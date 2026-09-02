@@ -1,0 +1,10 @@
+<!--
+  Desarrollado por RelajoSoft · https://relajosoft.com
+  Autor: Yoel Enrique Estevez Gonzalez
+  Nombres públicos que Android muestra para la aplicación y el IME.
+-->
+<resources>
+    <string name="app_name">RelajoSoft Scanner</string>
+    <string name="ime_name">RelajoSoft Scanner</string>
+    <string name="ime_subtype_label">Escáner</string>
+</resources>

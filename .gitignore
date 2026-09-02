@@ -1,0 +1,30 @@
+# Desarrollado por RelajoSoft · https://relajosoft.com
+# Autor: Yoel Enrique Estevez Gonzalez
+
+# Android Studio y Gradle
+.gradle/
+.idea/
+*.iml
+**/build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Configuración específica de cada ordenador
+local.properties
+
+# Claves y secretos de firma: jamás deben entrar al repositorio
+*.jks
+*.keystore
+keystore.properties
+signing.properties
+
+# Artefactos generados; se distribuyen mediante Releases o el sistema corporativo
+*.apk
+*.aab
+mapping.txt
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini

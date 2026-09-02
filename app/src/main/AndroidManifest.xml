@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Desarrollado por RelajoSoft · https://relajosoft.com
+  Autor: Yoel Enrique Estevez Gonzalez
+
+  Este manifiesto declara únicamente los permisos y componentes necesarios.
+  No se utiliza Accesibilidad, almacenamiento, ubicación ni acceso a Internet.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Cámara: necesaria para leer las etiquetas con CameraX y ML Kit. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Overlay: mantiene la app de trabajo debajo y conserva su campo activo. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- Confirmación física y servicio visible mientras existe el botón flotante. -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-feature android:name="android.hardware.camera.any" android:required="true" />
+    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="RelajoSoft Scanner"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RelajoSoftScanner"
+        android:usesCleartextTraffic="false">
+
+        <!-- Pantalla local de configuración. Es el único componente lanzable. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Servicio privado que crea el botón y la cámara flotante. -->
+        <service
+            android:name=".FloatingBubbleService"
+            android:exported="false"
+            android:foregroundServiceType="camera|specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Persistent floating scanner trigger over the user's work application" />
+        </service>
+
+        <!--
+          Único método de escritura. Android solo permite enlazar este servicio
+          a procesos que tengan BIND_INPUT_METHOD, permiso reservado al sistema.
+        -->
+        <service
+            android:name=".ScannerInputMethodService"
+            android:exported="true"
+            android:label="RelajoSoft Scanner"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data
+                android:name="android.view.im"
+                android:resource="@xml/input_method" />
+        </service>
+    </application>
+</manifest>

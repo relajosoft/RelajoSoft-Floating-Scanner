@@ -1,0 +1,14 @@
+<!--
+  Desarrollado por RelajoSoft · https://relajosoft.com
+  Autor: Yoel Enrique Estevez Gonzalez
+  Tema oscuro utilizado por la pantalla de configuración.
+-->
+<resources>
+    <style name="Theme.RelajoSoftScanner" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">#07111F</item>
+        <item name="android:statusBarColor">#07111F</item>
+        <item name="android:colorAccent">#26D9A1</item>
+    </style>
+</resources>
